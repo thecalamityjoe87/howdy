@@ -3,6 +3,7 @@
 
 # Import required modules
 import sys
+sys.path.append('/lib/security/howdy')
 import os
 import getpass
 import argparse
