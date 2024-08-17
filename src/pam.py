@@ -5,12 +5,17 @@ import subprocess
 import os
 import glob
 import syslog
+import sys
 
-# pam-python is running python 2, so we use the old module here
-import ConfigParser
+# The config parser is named in python2 as ConfigParser but in python3 as configparser
+# and here is a workaround for this.
+if sys.version_info[0] == 2:
+    import ConfigParser
+    config = ConfigParser.ConfigParser()
+else:
+    import configparser
+    config = configparser.ConfigParser()
 
-# Read config from disk
-config = ConfigParser.ConfigParser()
 config.read(os.path.dirname(os.path.abspath(__file__)) + "/config.ini")
 
 
