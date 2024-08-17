@@ -16,7 +16,7 @@ import json
 import configparser
 import dlib
 import cv2
-import datetime
+from datetime import timezone, datetime
 import snapshot
 import numpy as np
 import _thread as thread
@@ -54,7 +54,7 @@ def make_snapshot(type):
 	"""Generate snapshot after detection"""
 	snapshot.generate(snapframes, [
 		type + " LOGIN",
-		"Date: " + datetime.datetime.utcnow().strftime("%Y/%m/%d %H:%M:%S UTC"),
+		"Date: " + datetime.now(timezone.utc).strftime("%Y/%m/%d %H:%M:%S UTC"),
 		"Scan time: " + str(round(time.time() - timings["fr"], 2)) + "s",
 		"Frames: " + str(frames) + " (" + str(round(frames / (time.time() - timings["fr"]), 2)) + "FPS)",
 		"Hostname: " + os.uname().nodename,
