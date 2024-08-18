@@ -38,7 +38,41 @@ python3-dev libopencv-dev python3-numpy \
 python3-opencv libpam-python
 ```
 
-This will guide you through the installation.
+Download the .deb file from the [Releases page](https://github.com/thecalamityjoe87/howdy/releases) and install it in terminal:
+
+`sudo dpkg -i howdy_2.6.1-1_all.deb`
+
+After setting up Howdy, you'll need to add the PAM module to `pam.d/sudo `and `pam.d/gdm-password`:
+
+`sudo nano /etc/pam.d/sudo`
+
+Add these lines:
+
+```
+auth sufficient pam_python.so /lib/security/howdy/pam.py
+auth sufficient pam_unix.so try_first_pass likeauth nullok
+```
+Same thing for `gdm-password`. This is so we can use Howdy on the login/lock screens:
+
+`sudo nano /etc/pam.d/gdm-password`
+
+Add these lines:
+
+```
+auth sufficient pam_python.so /lib/security/howdy/pam.py
+auth sufficient pam_unix.so try_first_pass likeauth nullok
+```
+
+Lastly, we want to stop the DEBUG crap when Howdy is used:
+
+`nano ~/.bashrc`
+
+Add these lines:
+
+```
+export OPENCV_LOG_LEVEL=OFF
+export GST_DEBUG=0
+```
 
 ### Debian
 
