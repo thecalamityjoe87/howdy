@@ -1,8 +1,11 @@
 howdy (2.6.1-1) xenial; urgency=medium
 
-  * Fix up v2.6.1 to run on Ubuntu 24.04
+  * Add missing deps to DEBIAN control file
+  * Fixed post-install file so deps install correctly
+  * Fixed incorrect permissions set on howdy directory folders
+  * Random fixes so Howdy works with Ubuntu 24.04
 
- -- thecalamityjoe87 <calamityjoe87@gmail.com>  Wed, 17 Aug 2024 18:00:00 -0600
+ -- thecalamityjoe87 <calamityjoe87@gmail.com>  Sat, 17 Aug 2024 20:56:18 -0500
 
 howdy (2.6.1) xenial; urgency=medium
 
