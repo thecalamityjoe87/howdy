@@ -27,12 +27,26 @@ Howdy is currently available and packaged for Debian/Ubuntu, Arch Linux, Fedora 
 
 ### Ubuntu or Linux Mint
 
-Run the installer by pasting (`ctrl+shift+V`) the following commands into the terminal one at a time:
+#### Dependencies
+
+- Python 3.6 or higher
+  * pip
+  * setuptools
+  * wheel
+- meson version 0.64 or higher
+- ninja
+- INIReader (can be pulled from git automatically if not found)
+- libevdev
+
+To install them on Debian/Ubuntu for example:
 
 ```
-sudo add-apt-repository ppa:boltgolt/howdy
-sudo apt update
-sudo apt install howdy
+sudo apt-get update && sudo apt-get install -y \
+python3 python3-pip python3-setuptools python3-wheel \
+cmake make build-essential \
+libpam0g-dev libinih-dev libevdev-dev \
+python3-dev libopencv-dev python3-numpy \
+python3-opencv libpam-python
 ```
 
 This will guide you through the installation.
