@@ -104,17 +104,6 @@ in_file.close()
 # Remove the temporary file
 os.unlink("/tmp/howdy_picked_device")
 
-log("Upgrading pip to the latest version")
-
-# Update pip
-handleStatus(sc(["pip3", "install", "--upgrade", "pip"]))
-
-
-log("Upgrading numpy to the latest version")
-
-# Update numpy
-handleStatus(subprocess.call(["pip3", "install", "--upgrade", "numpy"]))
-
 log("Downloading and unpacking data files")
 
 # Run the bash script to download and unpack the .dat files needed
@@ -135,7 +124,7 @@ else:
 	LOADER_CMD = [loader, "--retry", "5", "--location", "--output"]
 
 # Assemble and execute the download command
-cmd = LOADER_CMD + [dlib_archive, "https://github.com/davisking/dlib/archive/v19.16.tar.gz"]
+cmd = LOADER_CMD + [dlib_archive, "https://github.com/davisking/dlib/archive/refs/tags/v19.24.6.tar.gz"]
 handleStatus(sc(cmd))
 
 # The folder containing the dlib source
@@ -187,12 +176,6 @@ log("Cleaning up dlib")
 # Remove the no longer needed git clone
 del sp
 rmtree(DLIB_DIR)
-
-print("Temporary dlib files removed")
-
-log("Installing OpenCV")
-
-handleStatus(subprocess.call(["pip3", "install", "--no-cache-dir", "opencv-python"]))
 
 log("Configuring howdy")
 
