@@ -111,7 +111,7 @@ handleStatus(subprocess.call(["./install.sh"], shell=True, cwd="/lib/security/ho
 
 log("Downloading dlib")
 
-dlib_archive = "/tmp/v19.16.tar.gz"
+dlib_archive = "/tmp/v19.24.6.tar.gz"
 loader = which("wget")
 LOADER_CMD = None
 
@@ -193,12 +193,16 @@ for line in fileinput.input(["/lib/security/howdy/config.ini"], inplace=1):
 print("Camera ID saved")
 
 # Secure the howdy folder
-handleStatus(sc(["chmod 744 -R /lib/security/howdy/"], shell=True))
+#handleStatus(sc(["chmod 744 -R /lib/security/howdy/"], shell=True))
 
 # Allow anyone to execute the python CLI
 os.chmod("/lib/security/howdy", 0o755)
 os.chmod("/lib/security/howdy/cli.py", 0o755)
 handleStatus(sc(["chmod 755 -R /lib/security/howdy/cli"], shell=True))
+# For some reason this folder doesn't exist, let's make it
+handleStatus(sc(["mkdir -p /lib/security/howdy/snapshots/"], shell=True))
+# Set permissions to the howdy folder
+handleStatus(sc(["chmod 755 -R /lib/security/howdy/"], shell=True))
 print("Permissions set")
 
 # Make the CLI executable as howdy
