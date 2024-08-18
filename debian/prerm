@@ -42,4 +42,4 @@ except Exception:
 	pass
 
 # Remove dlib
-subprocess.call(['pip3', 'uninstall', 'dlib', '-y', '--no-cache-dir'])
+subprocess.call(['pip3', 'uninstall', 'dlib', '-y', '--no-cache-dir', '--break-system-packages'])
